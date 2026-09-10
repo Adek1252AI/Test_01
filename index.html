@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test_01 — Omarchy & Hermes</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e3a5f 0%, #4a6fa5 30%, #6b7b8d 60%, #8c9baa 100%);
+      color: #e8edf2;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      background: rgba(10, 14, 23, 0.55);
+      backdrop-filter: blur(8px);
+      border-right: 1px solid rgba(255,255,255,0.08);
+      padding: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: fixed;
+      top: 0; bottom: 0; left: 0;
+      z-index: 10;
+    }
+
+    .sidebar .logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a0c4e8;
+      padding: 0 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 8px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 12px 20px;
+      color: #b8c5d4;
+      text-decoration: none;
+      font-size: 15px;
+      border-left: 3px solid transparent;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(255,255,255,0.07);
+      border-left-color: #7bb3d9;
+      color: #ffffff;
+    }
+
+    .sidebar nav a.active {
+      background: rgba(123, 179, 217, 0.15);
+    }
+
+    /* ── Main ── */
+    .main {
+      margin-left: 220px;
+      padding: 48px 56px;
+      flex: 1;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .section h1 .badge {
+      font-size: 13px;
+      font-weight: 400;
+      color: #a0c4e8;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .section p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #c8d4e0;
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .section ul li {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: #c0cdda;
+    }
+
+    .section ul li strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section .cta {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 20px;
+      background: rgba(123,179,217,0.2);
+      border: 1px solid rgba(123,179,217,0.3);
+      border-radius: 6px;
+      color: #a0c4e8;
+      font-size: 14px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .section .cta:hover {
+      background: rgba(123,179,217,0.3);
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+      color: #8899aa;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      <div class="logo">Test_01</div>
+      <nav>
+        <a href="#" data-target="home"   class="active">Home</a>
+        <a href="#" data-target="about">About</a>
+        <a href="#" data-target="license">License</a>
+      </nav>
+    </aside>
+
+    <!-- ── Content ── -->
+    <main class="main">
+
+      <!-- Home -->
+      <section id="home" class="section active">
+        <h1>Home <span class="badge">landing</span></h1>
+        <p>
+          Welcome to <strong>Test_01</strong> — a sandbox repository set up to check how
+          <strong>Omarchy</strong> can co-operate with <strong>Hermes</strong>. This page
+          is a minimal single-page site sitting inside the repo to give both tools
+          something concrete to render, read, and act on.
+        </p>
+        <p>
+          The background is a smooth blue-to-gray gradient; the sidebar on the left
+          holds the three navigation buttons you're looking at right now. Click any of
+          them and the main panel swaps its content without a page reload.
+        </p>
+        <ul>
+          <li><strong>Purpose</strong> A shared workspace for Omarchy + Hermes integration tests.</li>
+          <li><strong>Stack</strong> Plain HTML + CSS + vanilla JS — no framework to get in the way.</li>
+          <li><strong>Repo</strong> Adek1252AI/Test_01 (private).</li>
+          <li><strong>Branch</strong> main — the live source of this page.</li>
+        </ul>
+        <a href="#" data-target="about" class="cta">Learn more →</a>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <h1>About <span class="badge">context</span></h1>
+        <p>
+          The <strong>About</strong> section exists to describe what this test repository
+          is actually for. In short: it's a scratchpad where Omarchy and Hermes can both
+          inspect and modify a single artifact — this very file — and observe each other's
+          changes in real time.
+        </p>
+        <p>
+          Omarchy is the workspace/orchestration side of the experiment; Hermes is the
+          agent that reads, writes, and reasons over the same files. By keeping everything
+          in one repository, we get a clean integration point with no external dependencies.
+        </p>
+        <ul>
+          <li><strong>About this repo</strong> Created to explore Omarchy ↔ Hermes co-operation.</li>
+          <li><strong>About this page</strong> A static placeholder site inside the repo, driven by the sidebar navigation.</li>
+          <li><strong>About the authors</strong> Adrian Biczek (admin) — experimenting with agent-driven workflows.</li>
+          <li><strong>About future work</strong> More pages, more interactivity, more cross-tool signals.</li>
+        </ul>
+        <a href="#" data-target="license" class="cta">Review license →</a>
+      </section>
+
+      <!-- License -->
+      <section id="license" class="section">
+        <h1>License <span class="badge">terms</span></h1>
+        <p>
+          The <strong>License</strong> section lays out the legal envelope for
+          <strong>Test_01</strong>. Since this is a private test repository, the formal
+          license file has not been committed yet — but the intent is simple: anything
+          generated here for the Omarchy + Hermes experiment is meant to stay internal
+          until it's ready to be shared.
+        </p>
+        <p>
+          Once the experiment matures and the code is worth publishing, a proper open-source
+          license (MIT or Apache-2.0) will be added to the repo root. Until then, treat
+          every file in this repository as proprietary-internal.
+        </p>
+        <ul>
+          <li><strong>License status</strong> Not yet applied — repo is private and experimental.</li>
+          <li><strong>License intent</strong> MIT or Apache-2.0 once the work is public-ready.</li>
+          <li><strong>License scope</strong> All files in Adek1252AI/Test_01 until a license file is added.</li>
+          <li><strong>License contact</strong> Reach the repo owner via GitHub for permission questions.</li>
+        </ul>
+        <a href="#" data-target="home" class="cta">Back to Home ←</a>
+      </section>
+
+    </main>
+
+    <footer>
+      Test_01 · Private repository · Adek1252AI · Just a test to check how Omarchy can co-operate with Hermes.
+    </footer>
+
+  </div>
+
+  <script>
+    const links = document.querySelectorAll('.sidebar nav a');
+    const sections = document.querySelectorAll('.section');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.dataset.target;
+
+        // update active states
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
